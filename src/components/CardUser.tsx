@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Flex,
   Box,
@@ -18,36 +19,50 @@ export const CardUser = () => {
   const bgColor = { light: "gray.50", dark: "gray.900" };
 
   const color = { light: "black", dark: "white" };
+  // const [isExpanded, setIsExpanded] = useState(false);
   return (
     <Box w="full">
-      <Accordion defaultIndex={[1]} allowMultiple>
+      <Accordion allowMultiple defaultIndex={[0]} ml="100px">
         <AccordionItem maxW="590px">
           {({ isExpanded }) => (
-            <>
+            <Box
+            // boxShadow={
+            //   isExpanded
+            //     ? index % 2
+            //       ? "0px 0px 50px #F579A6"
+            //       : "0px 0px 50px #25E899"
+            //     : ""
+            // }
+            >
               <AccordionButton
-                h="140px"
                 bg="#1A103D"
-                _hover={{ boxShadow: "0px 0px 50px rgba(245, 121, 166, 0.5);" }}
+                h="140px"
                 p="0"
+                _focus={{}}
+                _hover={
+                  !isExpanded && {
+                    boxShadow: "0px 0px 50px rgba(245, 121, 166, 0.5);",
+                  }
+                }
               >
                 <Box
+                  color="white"
                   d="flex"
                   flex="1"
-                  textAlign="left"
-                  color="white"
                   gridGap="30px"
+                  textAlign="left"
                 >
                   <Image
+                    alt="Segun Adebayo"
                     boxSize="140px"
                     objectFit="cover"
                     src="https://bit.ly/sage-adebayo"
-                    alt="Segun Adebayo"
                   />
                   <Flex direction="column">
                     <Heading
                       as="h2"
-                      fontWeight="semibold"
                       fontSize="22px"
+                      fontWeight="semibold"
                       m="23px 0 7px"
                     >
                       Dianne Russell
@@ -56,8 +71,8 @@ export const CardUser = () => {
                       color={isExpanded ? "#5BF1CD" : "#9B95B0"}
                       fontSize="17px"
                       href="https://gitcoin.co/username"
-                      _hover={{ textDecoration: "none" }}
                       isExternal
+                      _hover={{ textDecoration: "none" }}
                     >
                       https://gitcoin.co/username
                     </Link>
@@ -65,22 +80,11 @@ export const CardUser = () => {
                 </Box>
               </AccordionButton>
 
-              <AccordionPanel bg="#1A103D" p="0 32px 0 28px" h="479px">
+              <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
                 <CardInfo />
               </AccordionPanel>
-            </>
+            </Box>
           )}
-        </AccordionItem>
-
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                Section 2 title
-              </Box>
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}></AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Box>
