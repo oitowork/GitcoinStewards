@@ -5,6 +5,7 @@ import {
   ListItem,
   Text,
   Divider,
+  Button,
   useColorMode,
 } from "@chakra-ui/react";
 import CalendarIcon from "../../public/icons/calendar.svg";
@@ -73,8 +74,8 @@ export const CardInfo = () => {
           mb="24px"
           w="full"
         >
-          <Box d="flex" alignItems="center" ml='-6px'>
-            <UserIcon  />
+          <Box d="flex" alignItems="center" ml="-6px">
+            <UserIcon />
             <Text ml="19px">Delegators</Text>
           </Box>
           <Text>719</Text>
@@ -107,6 +108,35 @@ export const CardInfo = () => {
           <Text>75%</Text>
         </ListItem>
       </List>
+
+      <Flex
+        justify="space-between"
+        align="center"
+        mt="28px"
+        color="#0E0333"
+        fontWeight="semibold"
+      >
+        <Button
+          bg="#F579A6"
+          fontSize="22px"
+          h="66px"
+          variant="unstyled"
+          w="176px"
+          _focus={{}}
+        >
+          Statement
+        </Button>
+        <Button
+          bg="#5BF1CD"
+          fontSize="22px"
+          h="66px"
+          variant="unstyled"
+          w="161px"
+          _focus={{}}
+        >
+          Delegate
+        </Button>
+      </Flex>
     </>
   );
 };

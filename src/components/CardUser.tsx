@@ -21,7 +21,7 @@ export const CardUser = () => {
   return (
     <Box w="full">
       <Accordion defaultIndex={[1]} allowMultiple>
-        <AccordionItem w="590px">
+        <AccordionItem maxW="590px">
           {({ isExpanded }) => (
             <>
               <AccordionButton
@@ -65,12 +65,7 @@ export const CardUser = () => {
                 </Box>
               </AccordionButton>
 
-              <AccordionPanel
-                bg="#1A103D"
-                p="0 32px 0 28px"
-                h="calc(140px * 3)"
-              >
-               
+              <AccordionPanel bg="#1A103D" p="0 32px 0 28px" h="479px">
                 <CardInfo />
               </AccordionPanel>
             </>
@@ -85,21 +80,7 @@ export const CardUser = () => {
               </Box>
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>
-            {/* <Box d="flex" gridGap="7px">
-              {levelActive.map((item) => {
-                return (
-                  <Divider
-                    key={item}
-                    w="2px"
-                    h="30px"
-                    bg={num > item ? "#02E2AC" : "#02e2ac54"}
-                    orientation="vertical"
-                  />
-                );
-              })}
-            </Box> */}
-          </AccordionPanel>
+          <AccordionPanel pb={4}></AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Box>
