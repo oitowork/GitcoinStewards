@@ -48,7 +48,7 @@ export const CardInfo = () => {
         >
           <Box d="flex" alignItems="center">
             <CalendarIcon />
-            <Text ml="28px">Steward since</Text>
+            <Text ml="22px">Steward since</Text>
           </Box>
           <Text>2021-07-01</Text>
         </ListItem>
@@ -62,7 +62,7 @@ export const CardInfo = () => {
         >
           <Box d="flex" alignItems="center">
             <MessageIcon />
-            <Text ml="28px">Forum post</Text>
+            <Text ml="22.5px">Forum post</Text>
           </Box>
           <Text>145</Text>
         </ListItem>
