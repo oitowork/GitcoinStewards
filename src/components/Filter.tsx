@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -8,6 +8,8 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { observer } from "mobx-react-lite";
+import StoreContext from "../mobx/store";
 const options = [
   "Overall health",
   "Steward Age",
@@ -16,15 +18,15 @@ const options = [
   "Voting Power",
   "Vote participation",
 ];
-export const Filter = () => {
-  const [selected, setSelected] = useState("");
+export const Filter = observer(() => {
+  const store = useContext(StoreContext);
+  const { filtedName, changeFilterName } = store;
   const { colorMode } = useColorMode();
 
   const bgColor = { light: "gray.50", dark: "gray.900" };
 
   const color = { light: "black", dark: "white" };
-
-  const getSelectName = (option: string) => setSelected(option);
+  // console.log(filtedName);
   return (
     <Menu
       gutter={0}
@@ -47,6 +49,7 @@ export const Filter = () => {
         _hover={{ bg: "#301041" }}
         _focus={{ bg: "#301041" }}
         _active={{ bg: "#301041" }}
+        mb="291px"
       >
         Sort Stewards By
       </MenuButton>
@@ -61,8 +64,8 @@ export const Filter = () => {
         {options.map((option) => (
           <MenuItem
             key={option}
-            onClick={() => getSelectName(option)}
-            color={selected === option && "#fff"}
+            onClick={() => changeFilterName(option)}
+            color={filtedName === option && "#fff"}
             _hover={{ bg: "#1A103D" }}
             _focus={{ bg: "#1A103D" }}
           >
@@ -72,4 +75,4 @@ export const Filter = () => {
       </MenuList>
     </Menu>
   );
-};
+});

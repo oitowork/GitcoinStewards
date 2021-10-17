@@ -1,44 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Flex,
   Box,
   Image,
   Heading,
   Link,
-  Grid,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
 } from "@chakra-ui/react";
-import { CardInfo } from "./CardInfo";
-interface Data {
-  name: string;
-  image: string;
-  handle_gitcoin: string;
-  handle_forum: string;
-  statement_post_id: number;
-  steward_since: string;
-  workstream: string;
-  address: string;
-  health: number;
-  posts: number;
-  votingweight: number;
-  participation_snapshot: number;
-  participation_tally: number;
-}
 
-export const CardUser = () => {
-  const [data, setData] = useState<Data[]>([]);
-  useEffect(() => {
-    fetch("./data.json")
-      .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
-  // console.log(data);
+import { CardInfo } from "./CardInfo";
+import { observer } from "mobx-react-lite";
+import StoreContext from "../mobx/store";
+
+export const CardUser = observer(() => {
+  const store = useContext(StoreContext);
+  const { steward } = store;
+
+  // console.log(steward);
   return (
     <Accordion allowMultiple defaultIndex={[0]}>
-      {data.map((item, index) => {
+      {steward.map((item, index) => {
         // console.log(item);
         if (index % 2 == 0) {
           return (
@@ -180,4 +164,4 @@ export const CardUser = () => {
       })}
     </Accordion>
   );
-};
+});
