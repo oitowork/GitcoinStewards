@@ -8,6 +8,7 @@ import {
   Button,
   useColorMode,
 } from "@chakra-ui/react";
+import { Steward } from "../model/stewards.interface";
 import CalendarIcon from "../../public/icons/calendar.svg";
 import MessageIcon from "../../public/icons/message.svg";
 import UserIcon from "../../public/icons/user.svg";
@@ -15,12 +16,16 @@ import CheckIcon from "../../public/icons/check.svg";
 import FlashIcon from "../../public/icons/flash.svg";
 const levelActive = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export const CardInfo = ({ info }) => {
-  const { colorMode } = useColorMode();
+export const CardInfo = ({ ...spread }: Steward) => {
+  const {
+    health,
+    participation_snapshot,
+    participation_tally,
+    posts,
+    steward_since,
+    votingweight,
+  } = spread;
 
-  const bgColor = { light: "gray.50", dark: "gray.900" };
-
-  const color = { light: "black", dark: "white" };
   return (
     <>
       <Flex gridGap="7px" py="20px">
@@ -31,7 +36,7 @@ export const CardInfo = ({ info }) => {
               borderLeftWidth="0"
               w="3px"
               h="30px"
-              bg={info.health > item ? "#02E2AC" : "#02e2ac54"}
+              bg={health > item ? "#02E2AC" : "#02e2ac54"}
               orientation="vertical"
             />
           );
@@ -49,7 +54,7 @@ export const CardInfo = ({ info }) => {
             <CalendarIcon />
             <Text ml="22px">Steward since</Text>
           </Box>
-          <Text>{info.steward_since}</Text>
+          <Text>{steward_since}</Text>
         </ListItem>
 
         <ListItem
@@ -63,7 +68,7 @@ export const CardInfo = ({ info }) => {
             <MessageIcon />
             <Text ml="22.5px">Forum post</Text>
           </Box>
-          <Text>{info.posts}</Text>
+          <Text>{posts}</Text>
         </ListItem>
 
         <ListItem
@@ -77,7 +82,7 @@ export const CardInfo = ({ info }) => {
             <UserIcon />
             <Text ml="19px">Delegators</Text>
           </Box>
-          <Text>{info.participation_tally}</Text>
+          <Text>{participation_tally}</Text>
         </ListItem>
 
         <ListItem
@@ -91,7 +96,7 @@ export const CardInfo = ({ info }) => {
             <CheckIcon />
             <Text ml="28px">Voting power</Text>
           </Box>
-          <Text>{info.votingweight}%</Text>
+          <Text>{votingweight}%</Text>
         </ListItem>
 
         <ListItem
@@ -104,7 +109,7 @@ export const CardInfo = ({ info }) => {
             <FlashIcon />
             <Text ml="28px">Vote participation</Text>
           </Box>
-          <Text>{info.participation_snapshot}%</Text>
+          <Text>{participation_snapshot}%</Text>
         </ListItem>
       </List>
 

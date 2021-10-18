@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import {
   Flex,
   Box,
@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
 import { CardInfo } from "./CardInfo";
@@ -16,18 +17,18 @@ import { observer } from "mobx-react-lite";
 import StoreContext from "../mobx/store";
 
 export const CardUser = observer(() => {
+  const [isLessThan920] = useMediaQuery("(max-width: 920px)");
   const store = useContext(StoreContext);
   const { steward } = store;
 
-  // console.log(steward);
+  const numDivder = isLessThan920 ? 1 : 2;
   return (
-    <Accordion allowMultiple defaultIndex={[0]}>
-      {steward.map((item, index) => {
-        // console.log(item);
-        if (index % 2 == 0) {
-          return (
-            <Box>
-              <AccordionItem maxW="590px" key={index}>
+    <Flex>
+      <Accordion allowMultiple defaultIndex={[]}>
+        {steward.map((stewardItem, index) => {
+          if (index % numDivder === 0) {
+            return (
+              <AccordionItem key={stewardItem.handle_gitcoin} maxW="590px">
                 {({ isExpanded }) => (
                   <Box
                     boxShadow={
@@ -45,7 +46,10 @@ export const CardUser = observer(() => {
                       _focus={{}}
                       _hover={
                         !isExpanded && {
-                          boxShadow: "0px 0px 50px rgba(245, 121, 166, 0.5);",
+                          boxShadow:
+                            index % 2
+                              ? "0px 0px 50px rgba(37, 232, 153, 0.5)"
+                              : "0px 0px 50px rgba(245, 121, 166, 0.5)",
                         }
                       }
                     >
@@ -60,7 +64,7 @@ export const CardUser = observer(() => {
                           alt="Segun Adebayo"
                           boxSize="140px"
                           objectFit="cover"
-                          src={`https://picsum.photos/140/${item.statement_post_id}`}
+                          src={`https://picsum.photos/140/${stewardItem.statement_post_id}`}
                         />
                         <Flex direction="column">
                           <Heading
@@ -69,99 +73,104 @@ export const CardUser = observer(() => {
                             fontWeight="semibold"
                             m="23px 0 7px"
                           >
-                            {item.name}
+                            {stewardItem.name}
                           </Heading>
                           <Link
                             color={isExpanded ? "#5BF1CD" : "#9B95B0"}
                             fontSize="17px"
-                            href={`https://gitcoin.co/${item.handle_gitcoin}`}
+                            href={`https://gitcoin.co/${stewardItem.handle_gitcoin}`}
                             isExternal
                             _hover={{ textDecoration: "none" }}
                           >
-                            https://gitcoin.co/{item.handle_gitcoin}
+                            https://gitcoin.co/{stewardItem.handle_gitcoin}
                           </Link>
                         </Flex>
                       </Box>
                     </AccordionButton>
 
                     <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
-                      <CardInfo info={item} />
+                      <CardInfo {...stewardItem} />
                     </AccordionPanel>
                   </Box>
                 )}
               </AccordionItem>
-            </Box>
-          );
-        } else {
-          return (
-            <Box>
-              <AccordionItem maxW="590px" key={index}>
-                {({ isExpanded }) => (
-                  <Box
-                    boxShadow={
-                      isExpanded
-                        ? index % 2
-                          ? "0px 0px 50px #25E899"
-                          : "0px 0px 50px #F579A6"
-                        : ""
-                    }
-                  >
-                    <AccordionButton
-                      bg="#1A103D"
-                      h="140px"
-                      p="0"
-                      _focus={{}}
-                      _hover={
-                        !isExpanded && {
-                          boxShadow: "0px 0px 50px rgba(245, 121, 166, 0.5);",
-                        }
+            );
+          }
+        })}
+      </Accordion>
+      {numDivder === 2 && (
+        <Accordion allowMultiple>
+          {steward.map((stewardItem, index) => {
+            if (index % numDivder === 1) {
+              return (
+                <AccordionItem key={index} maxW="590px">
+                  {({ isExpanded }) => (
+                    <Box
+                      boxShadow={
+                        isExpanded
+                          ? index % 2
+                            ? "0px 0px 50px #25E899"
+                            : "0px 0px 50px #F579A6"
+                          : ""
                       }
                     >
-                      <Box
-                        color="white"
-                        d="flex"
-                        flex="1"
-                        gridGap="30px"
-                        textAlign="left"
+                      <AccordionButton
+                        bg="#1A103D"
+                        h="140px"
+                        p="0"
+                        _focus={{}}
+                        _hover={
+                          !isExpanded && {
+                            boxShadow: "0px 0px 50px rgba(37, 232, 153, 0.5)",
+                          }
+                        }
                       >
-                        <Image
-                          alt="Segun Adebayo"
-                          boxSize="140px"
-                          objectFit="cover"
-                          src={`https://picsum.photos/140/${item.statement_post_id}`}
-                        />
-                        <Flex direction="column">
-                          <Heading
-                            as="h2"
-                            fontSize="22px"
-                            fontWeight="semibold"
-                            m="23px 0 7px"
-                          >
-                            {item.name}
-                          </Heading>
-                          <Link
-                            color={isExpanded ? "#5BF1CD" : "#9B95B0"}
-                            fontSize="17px"
-                            href={`https://gitcoin.co/${item.handle_gitcoin}`}
-                            isExternal
-                            _hover={{ textDecoration: "none" }}
-                          >
-                            https://gitcoin.co/{item.handle_gitcoin}
-                          </Link>
-                        </Flex>
-                      </Box>
-                    </AccordionButton>
+                        <Box
+                          color="white"
+                          d="flex"
+                          flex="1"
+                          gridGap="30px"
+                          textAlign="left"
+                        >
+                          <Image
+                            alt="Segun Adebayo"
+                            boxSize="140px"
+                            objectFit="cover"
+                            src={`https://picsum.photos/140/${stewardItem.statement_post_id}`}
+                          />
+                          <Flex direction="column">
+                            <Heading
+                              as="h2"
+                              fontSize="22px"
+                              fontWeight="semibold"
+                              m="23px 0 7px"
+                            >
+                              {stewardItem.name}
+                            </Heading>
+                            <Link
+                              color={isExpanded ? "#5BF1CD" : "#9B95B0"}
+                              fontSize="17px"
+                              href={`https://gitcoin.co/${stewardItem.handle_gitcoin}`}
+                              isExternal
+                              _hover={{ textDecoration: "none" }}
+                            >
+                              https://gitcoin.co/{stewardItem.handle_gitcoin}
+                            </Link>
+                          </Flex>
+                        </Box>
+                      </AccordionButton>
 
-                    <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
-                      <CardInfo info={item} />
-                    </AccordionPanel>
-                  </Box>
-                )}
-              </AccordionItem>
-            </Box>
-          );
-        }
-      })}
-    </Accordion>
+                      <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
+                        <CardInfo {...stewardItem} />
+                      </AccordionPanel>
+                    </Box>
+                  )}
+                </AccordionItem>
+              );
+            }
+          })}
+        </Accordion>
+      )}
+    </Flex>
   );
 });
