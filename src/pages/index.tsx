@@ -5,52 +5,25 @@ import {
   List,
   ListIcon,
   ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+} from "@chakra-ui/react";
+import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons";
 
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+import { Hero } from "../components/Hero";
+import { Container } from "../components/Container";
+import { Main } from "../components/Main";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
+import { CTA } from "../components/CTA";
+import { Footer } from "../components/Footer";
+import { CardUser } from "../components/CardUser";
+import { Filter } from "../components/Filter";
 
 const Index = () => (
-  <Container height="100vh">
-    <Hero />
+  <Container minH="100vh">
     <Main>
-      <Text>
-        DApp Template <Code>Ethers</Code> + <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>typescript</Code>.
-      </Text>
-
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
+      <Filter />
+      <CardUser />
     </Main>
-
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Oito.Work</Text>
-    </Footer>
-    <CTA />
   </Container>
-)
+);
 
-export default Index
+export default Index;
