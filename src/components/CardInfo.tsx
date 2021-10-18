@@ -8,20 +8,24 @@ import {
   Button,
   useColorMode,
 } from "@chakra-ui/react";
+import { Steward } from "../model/stewards.interface";
 import CalendarIcon from "../../public/icons/calendar.svg";
 import MessageIcon from "../../public/icons/message.svg";
 import UserIcon from "../../public/icons/user.svg";
 import CheckIcon from "../../public/icons/check.svg";
 import FlashIcon from "../../public/icons/flash.svg";
 const levelActive = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const num = 9;
 
-export const CardInfo = () => {
-  const { colorMode } = useColorMode();
+export const CardInfo = ({ ...spread }: Steward) => {
+  const {
+    health,
+    participation_snapshot,
+    participation_tally,
+    posts,
+    steward_since,
+    votingweight,
+  } = spread;
 
-  const bgColor = { light: "gray.50", dark: "gray.900" };
-
-  const color = { light: "black", dark: "white" };
   return (
     <>
       <Flex gridGap="7px" py="20px">
@@ -32,7 +36,7 @@ export const CardInfo = () => {
               borderLeftWidth="0"
               w="3px"
               h="30px"
-              bg={num > item ? "#02E2AC" : "#02e2ac54"}
+              bg={health > item ? "#02E2AC" : "#02e2ac54"}
               orientation="vertical"
             />
           );
@@ -50,7 +54,7 @@ export const CardInfo = () => {
             <CalendarIcon />
             <Text ml="22px">Steward since</Text>
           </Box>
-          <Text>2021-07-01</Text>
+          <Text>{steward_since}</Text>
         </ListItem>
 
         <ListItem
@@ -64,7 +68,7 @@ export const CardInfo = () => {
             <MessageIcon />
             <Text ml="22.5px">Forum post</Text>
           </Box>
-          <Text>145</Text>
+          <Text>{posts}</Text>
         </ListItem>
 
         <ListItem
@@ -78,7 +82,7 @@ export const CardInfo = () => {
             <UserIcon />
             <Text ml="19px">Delegators</Text>
           </Box>
-          <Text>719</Text>
+          <Text>{participation_tally}</Text>
         </ListItem>
 
         <ListItem
@@ -92,7 +96,7 @@ export const CardInfo = () => {
             <CheckIcon />
             <Text ml="28px">Voting power</Text>
           </Box>
-          <Text>10%</Text>
+          <Text>{votingweight}%</Text>
         </ListItem>
 
         <ListItem
@@ -105,7 +109,7 @@ export const CardInfo = () => {
             <FlashIcon />
             <Text ml="28px">Vote participation</Text>
           </Box>
-          <Text>75%</Text>
+          <Text>{participation_snapshot}%</Text>
         </ListItem>
       </List>
 
