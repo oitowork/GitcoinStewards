@@ -6,7 +6,6 @@ import {
   Text,
   Divider,
   Button,
-  useColorMode,
 } from "@chakra-ui/react";
 import { Steward } from "../model/stewards.interface";
 import CalendarIcon from "../../public/icons/calendar.svg";
@@ -28,7 +27,7 @@ export const CardInfo = ({ ...spread }: Steward) => {
 
   return (
     <>
-      <Flex gridGap="7px" py="20px">
+      <Flex gridGap="7px" py="20px" justify={["center", "start"]}>
         {levelActive.map((item) => {
           return (
             <Divider
@@ -42,17 +41,19 @@ export const CardInfo = ({ ...spread }: Steward) => {
           );
         })}
       </Flex>
+
       <List color="#9B95B0" fontSize="22px">
         <ListItem
           alignItems="center"
           d="flex"
           justifyContent="space-between"
+          flexDirection={["column", "row"]}
           mb="24px"
           w="full"
         >
           <Box d="flex" alignItems="center">
             <CalendarIcon />
-            <Text ml="22px">Steward since</Text>
+            <Text ml={[0, "22px"]}>Steward since</Text>
           </Box>
           <Text>{steward_since}</Text>
         </ListItem>
@@ -61,12 +62,13 @@ export const CardInfo = ({ ...spread }: Steward) => {
           alignItems="center"
           d="flex"
           justifyContent="space-between"
+          flexDirection={["column", "row"]}
           mb="24px"
           w="full"
         >
           <Box d="flex" alignItems="center">
             <MessageIcon />
-            <Text ml="22.5px">Forum post</Text>
+            <Text ml={[0, "22.5px"]}>Forum post</Text>
           </Box>
           <Text>{posts}</Text>
         </ListItem>
@@ -75,12 +77,13 @@ export const CardInfo = ({ ...spread }: Steward) => {
           alignItems="center"
           d="flex"
           justifyContent="space-between"
+          flexDirection={["column", "row"]}
           mb="24px"
           w="full"
         >
           <Box d="flex" alignItems="center" ml="-6px">
             <UserIcon />
-            <Text ml="19px">Delegators</Text>
+            <Text ml={[0, "19px"]}>Delegators</Text>
           </Box>
           <Text>{participation_tally}</Text>
         </ListItem>
@@ -89,12 +92,13 @@ export const CardInfo = ({ ...spread }: Steward) => {
           alignItems="center"
           d="flex"
           justifyContent="space-between"
+          flexDirection={["column", "row"]}
           mb="24px"
           w="full"
         >
           <Box d="flex" alignItems="center">
             <CheckIcon />
-            <Text ml="28px">Voting power</Text>
+            <Text ml={[0,"28px"]}>Voting power</Text>
           </Box>
           <Text>{votingweight}%</Text>
         </ListItem>
@@ -103,17 +107,19 @@ export const CardInfo = ({ ...spread }: Steward) => {
           alignItems="center"
           d="flex"
           justifyContent="space-between"
+          flexDirection={["column", "row"]}
           w="full"
         >
           <Box d="flex" alignItems="center">
             <FlashIcon />
-            <Text ml="28px">Vote participation</Text>
+            <Text ml={[0,"28px"]}>Vote participation</Text>
           </Box>
           <Text>{participation_snapshot}%</Text>
         </ListItem>
       </List>
 
       <Flex
+        direction={["column", "row"]}
         justify="space-between"
         align="center"
         mt="28px"
@@ -125,7 +131,7 @@ export const CardInfo = ({ ...spread }: Steward) => {
           fontSize="22px"
           h="66px"
           variant="unstyled"
-          w="176px"
+          w={["100%", "176px"]}
           _focus={{}}
         >
           Statement
@@ -134,8 +140,9 @@ export const CardInfo = ({ ...spread }: Steward) => {
           bg="#5BF1CD"
           fontSize="22px"
           h="66px"
+          my={["10px", 0]}
           variant="unstyled"
-          w="161px"
+          w={["100%", "161px"]}
           _focus={{}}
         >
           Delegate

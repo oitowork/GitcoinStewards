@@ -28,13 +28,7 @@ export const Filter = observer(() => {
   const color = { light: "black", dark: "white" };
   // console.log(filtedName);
   return (
-    <Menu
-      gutter={0}
-      isLazy={false}
-      matchWidth={false}
-      flip={false}
-      preventOverflow={false}
-    >
+    <Menu gutter={0}>
       <MenuButton
         as={Button}
         bg="#301041"

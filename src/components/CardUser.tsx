@@ -23,12 +23,17 @@ export const CardUser = observer(() => {
 
   const numDivder = isLessThan920 ? 1 : 2;
   return (
-    <Flex>
+    <Flex gridGap={["0.5rem", "0.75rem", "1rem", "1.25rem"]}>
       <Accordion allowMultiple defaultIndex={[]}>
         {steward.map((stewardItem, index) => {
           if (index % numDivder === 0) {
             return (
-              <AccordionItem key={stewardItem.handle_gitcoin} maxW="590px">
+              <AccordionItem
+                border="none"
+                key={stewardItem.handle_gitcoin}
+                w={["90vw", "95vw", "100%", 490, 590]}
+                mb="1.25rem"
+              >
                 {({ isExpanded }) => (
                   <Box
                     boxShadow={
@@ -41,7 +46,7 @@ export const CardUser = observer(() => {
                   >
                     <AccordionButton
                       bg="#1A103D"
-                      h="140px"
+                      h={["auto", "140px"]}
                       p="0"
                       _focus={{}}
                       _hover={
@@ -54,22 +59,25 @@ export const CardUser = observer(() => {
                       }
                     >
                       <Box
+                        alignItems={["center", "start"]}
                         color="white"
                         d="flex"
                         flex="1"
-                        gridGap="30px"
-                        textAlign="left"
+                        flexDirection={["column", "row"]}
+                        gridGap={[2, "30px"]}
+                        py={["10px", 0]}
+                        textAlign={["center", "left"]}
                       >
                         <Image
                           alt="Segun Adebayo"
-                          boxSize="140px"
+                          boxSize={["180px", "140px"]}
                           objectFit="cover"
                           src={`https://picsum.photos/140/${stewardItem.statement_post_id}`}
                         />
                         <Flex direction="column">
                           <Heading
                             as="h2"
-                            fontSize="22px"
+                            fontSize={["lg", "22px"]}
                             fontWeight="semibold"
                             m="23px 0 7px"
                           >
@@ -77,7 +85,7 @@ export const CardUser = observer(() => {
                           </Heading>
                           <Link
                             color={isExpanded ? "#5BF1CD" : "#9B95B0"}
-                            fontSize="17px"
+                            fontSize={["md", "17px"]}
                             href={`https://gitcoin.co/${stewardItem.handle_gitcoin}`}
                             isExternal
                             _hover={{ textDecoration: "none" }}
@@ -88,7 +96,11 @@ export const CardUser = observer(() => {
                       </Box>
                     </AccordionButton>
 
-                    <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
+                    <AccordionPanel
+                      bg="#1A103D"
+                      h={["auto", "480px"]}
+                      p="0 32px 0 28px"
+                    >
                       <CardInfo {...stewardItem} />
                     </AccordionPanel>
                   </Box>
@@ -103,7 +115,12 @@ export const CardUser = observer(() => {
           {steward.map((stewardItem, index) => {
             if (index % numDivder === 1) {
               return (
-                <AccordionItem key={index} maxW="590px">
+                <AccordionItem
+                  border="none"
+                  key={index}
+                  w={["100%", 590, "100%", 490, 590]}
+                  mb="1.25rem"
+                >
                   {({ isExpanded }) => (
                     <Box
                       boxShadow={
@@ -160,7 +177,7 @@ export const CardUser = observer(() => {
                         </Box>
                       </AccordionButton>
 
-                      <AccordionPanel bg="#1A103D" h="479px" p="0 32px 0 28px">
+                      <AccordionPanel bg="#1A103D" h="480px" p="0 32px 0 28px">
                         <CardInfo {...stewardItem} />
                       </AccordionPanel>
                     </Box>
